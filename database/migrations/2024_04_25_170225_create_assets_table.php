@@ -16,9 +16,9 @@ class CreateAssetsTable extends Migration
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('project_id')
+            $table->foreignId('product_id')
                 ->references('id')
-                ->on('projects')
+                ->on('products')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->timestamps();

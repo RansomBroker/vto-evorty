@@ -1,0 +1,48 @@
+/* change default font*/
+body {
+    font-family: "Karla", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+/* bg color */
+.bg-cosmic-latte {
+    background-color: #e1fce9;
+}
+
+/* navbar font style */
+.philosopher-regular {
+    font-family: "Philosopher", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.philosopher-bold {
+    font-family: "Philosopher", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.philosopher-regular-italic {
+    font-family: "Philosopher", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.philosopher-bold-italic {
+    font-family: "Philosopher", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* text-primary */
+.text-mortar {
+    color: #525151 !important;
+}
+
+/* custom button */
+.btn-cosmic-latte {
+    color: #525151  ;
+    background-color: #BCFFCFFF;
+    border-color: #BCFFCFFF;
+}
