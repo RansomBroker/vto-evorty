@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\EditProduct;
 use App\Http\Livewire\Index;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', Index::class)->name('index');
+Route::get('/edit/{slug}', EditProduct::class)->name('product.edit');

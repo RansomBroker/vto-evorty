@@ -24,6 +24,8 @@ class Index extends Component
         Product::create($data);
 
         $this->name = '';
+
+        return redirect()->route('product.edit', $data['slug']);
     }
 
     public function showModal()
