@@ -1,48 +1,162 @@
-/* change default font*/
-body {
-    font-family: "Karla", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
+#viewer {
+    width: 100%;
+    height: 300px;
+    border-radius: 0.5em;
+    overflow: hidden;
 }
 
-/* bg color */
-.bg-cosmic-latte {
-    background-color: #e1fce9;
+#materialList {
+    width: 100%;
+    padding: 10px 0;
+    overflow-x: auto;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-/* navbar font style */
-.philosopher-regular {
-    font-family: "Philosopher", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+#materialList li {
+    list-style: none;
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
-.philosopher-bold {
-    font-family: "Philosopher", sans-serif;
-    font-weight: 700;
-    font-style: normal;
+#materialList input[type="color"] {
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    margin-right: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
-.philosopher-regular-italic {
-    font-family: "Philosopher", sans-serif;
-    font-weight: 400;
-    font-style: italic;
+#materialList button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
 }
 
-.philosopher-bold-italic {
-    font-family: "Philosopher", sans-serif;
-    font-weight: 700;
-    font-style: italic;
+#viewerEdit {
+    width: 100%;
+    height: 300px;
+    border-radius: 0.5em;
+    overflow: hidden;
 }
 
-/* text-primary */
-.text-mortar {
-    color: #525151 !important;
+#materialListEdit {
+    width: 100%;
+    padding: 10px 0;
+    overflow-x: auto;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-/* custom button */
-.btn-cosmic-latte {
-    color: #525151  ;
-    background-color: #BCFFCFFF;
-    border-color: #BCFFCFFF;
+#materialListEdit li {
+    list-style: none;
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
+
+#materialListEdit input[type="color"] {
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    margin-right: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#materialListEdit button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.container-cardlist {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 20px;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.card-list {
+    white-space: nowrap;
+    padding: 10px 0;
+    scroll-behavior: smooth;
+    overflow-x: auto;
+    font-size: 0;
+}
+
+.card-item {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.card-item-active {
+    border-color: #ff00ae;
+}
+
+.arrow {
+    position: absolute;
+    top: 73%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.left-arrow {
+    left: 0;
+}
+
+.right-arrow {
+    right: 0;
+}
+
+.control {
+    z-index: 1000;
+    width: 90%;
+    top: 25%;
+}
+
+.close-control {
+    top: -24%;
+    right: -3%;
+}
+

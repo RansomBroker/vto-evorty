@@ -15,12 +15,13 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->foreignId('product_id')
                 ->references('id')
                 ->on('products')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->string('name');
+            $table->string('thumbnail');
             $table->timestamps();
         });
     }
