@@ -21,7 +21,7 @@ class BraceletController extends Controller
     public function tryOn($brand, $product)
     {
         $brand = Brand::with(['product'])->where('slug', $brand)->first();
-        $product = Product::where('slug', $product)->where('type', 'bracelet')->get();
+        $product = Product::where('slug', $product)->where('type', 'bracelet')->first();
         return view('products.vto-bracelet', compact('brand', 'product'));
 
     }

@@ -49,10 +49,11 @@ $('.btn-edit').off('click').on('click', function() {
         success: function (response) {
             let data = response.fullUrl+response.data.base_folder+'/'+response.data.filename;
             let savedImages = JSON.parse(response.data.saved_images);
+            savedColorsEdit = JSON.parse(response.data.color);
             materialsEdit = [];
             _material_list_template_edit = ``;
             $('#materialColorListEdit').html('');
-            savedColorsEdit = JSON.parse(response.data.color);
+
 
             $("input[name='name_edit']").val(response.data.name);
 
@@ -69,7 +70,6 @@ $('.btn-edit').off('click').on('click', function() {
                         })
                     })
                 })
-
             })
 
             editProductModal.show();
@@ -127,6 +127,7 @@ $('.btn-edit').off('click').on('click', function() {
                         dataURL,
                         function (gltf) {
                             let model = gltf.scene;
+                            console.log(model)
 
                             sceneEdit.add(model);
 
