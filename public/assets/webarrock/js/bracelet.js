@@ -262,6 +262,11 @@ $(window).on('load', function () {
                             if(colors.length > 0 && colors[i] != undefined) {
                                 // assing color to materials
                                 materials[i].savedColors = materials[i].savedColors || (colors.length > 0 && colors[i] != undefined) ? colors[i] : [];
+
+                                // asign warna dasar menjadi warna pertama
+                                materials[i].color.setStyle(colors[0]);
+
+                                HandTrackerThreeHelper.rerender_object();
                             }
 
                             // menampilkan card list jika color > 1
