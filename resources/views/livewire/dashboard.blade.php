@@ -1,3 +1,4 @@
+@section('title', 'dashboard')
 <div class="layout-container">
     <x-sidebar :brand="$brand->name" :url="$brand->slug"/>
 

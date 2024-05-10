@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BraceletController;
+use App\Http\Controllers\EarringController;
 use App\Http\Livewire\BraceletProduct;
 use App\Http\Livewire\BrandAdd;
 use App\Http\Livewire\Dashboard;
@@ -26,4 +27,13 @@ Route::controller(BraceletController::class)->name('bracelet.')->group(function 
     Route::delete('/product/bracelet/delete/{product}', 'delete')->name('delete');
     Route::post('/product/bracelet/edit', 'edit')->name('edit');
     Route::get('/vto/bracelet/{brand}/{product}', 'tryOn')->name('vto');
+});
+
+Route::controller(EarringController::class)->name('earring.')->group(function () {
+    Route::get('/product/earring/{slug}', 'view')->name('view');
+    Route::post('/product/earring/add', 'add')->name('add');
+    Route::get('/product/earring/get-item/{id}', 'getItem')->name('get.item');
+    Route::delete('/product/earring/delete/{product}', 'delete')->name('delete');
+    Route::post('/product/earring/edit', 'edit')->name('edit');
+    Route::get('/vto/earring/{brand}/{product}', 'tryOn')->name('vto');
 });

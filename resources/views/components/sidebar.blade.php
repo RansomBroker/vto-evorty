@@ -23,8 +23,8 @@
             <span class="menu-header-text"> Category</span>
         </li>
 
-        <li class="menu-item">
-            <a href="" class="menu-link">
+        <li class="menu-item @if(Route::is('earring.view')) active @endif">
+            <a href="{{ route('earring.view', $url) }}" class="menu-link">
                 <div data-i18n="Analytics">Earring</div>
             </a>
         </li>
