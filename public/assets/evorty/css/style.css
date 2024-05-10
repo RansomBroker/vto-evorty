@@ -121,6 +121,18 @@
     cursor: pointer;
 }
 
+.card-item-edit {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
 .card-item-active {
     border-color: #ff00ae;
 }

@@ -18,6 +18,14 @@ class BraceletController extends Controller
         return view('products.bracelet', compact('brand', 'products'));
     }
 
+    public function tryOn($brand, $product)
+    {
+        $brand = Brand::with(['product'])->where('slug', $brand)->first();
+        $product = Product::where('slug', $product)->where('type', 'bracelet')->get();
+        return view('products.vto-bracelet', compact('brand', 'product'));
+
+    }
+
     public function add(Request $request)
     {
         $product = Str::of($request->name)->slug('-');

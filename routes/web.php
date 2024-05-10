@@ -21,8 +21,9 @@ Route::get('/dashboard/{slug}', Dashboard::class)->name('dashboard');
 
 Route::controller(BraceletController::class)->name('bracelet.')->group(function () {
     Route::get('/product/bracelet/{slug}', 'view')->name('view');
-    Route::post('/product/bracelet/{slug}/add', 'add')->name('add');
+    Route::post('/product/bracelet/add', 'add')->name('add');
     Route::get('/product/bracelet/get-item/{id}', 'getItem')->name('get.item');
     Route::delete('/product/bracelet/delete/{product}', 'delete')->name('delete');
     Route::post('/product/bracelet/edit', 'edit')->name('edit');
+    Route::get('/vto/bracelet/{brand}/{product}', 'tryOn')->name('vto');
 });
