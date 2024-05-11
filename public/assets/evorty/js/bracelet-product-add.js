@@ -16,7 +16,7 @@ let rgbeLoader = new THREE.RGBELoader();
 rgbeLoader.setDataType(THREE.UnsignedByteType);
 
 rgbeLoader.load(
-    BASE_URL + '/assets/others/hotel_room_1k.hdr',
+    BASE_URL + 'assets/others/hotel_room_1k.hdr',
     function (texture) {
         let pmremGenerator = new THREE.PMREMGenerator(renderer);
         scene.environment = pmremGenerator.fromEquirectangular(texture).texture;
@@ -332,7 +332,7 @@ $('#addProduct').on('submit', function (e) {
     });
 
     $.ajax({
-        url: BASE_URL + '/product/bracelet/add',
+        url: BASE_URL + 'product/bracelet/add',
         processData: false,
         contentType: false,
         cache: false,
