@@ -32,12 +32,12 @@
                                         <h4 class="fw-bold">{{ $product->name }}</h4>
                                         <div class="d-flex justify-content-start">
                                             <button type="button" class="btn-edit btn btn-success btn-sm m-2 p-2 rounded-circle" data-id="{{ $product->id }}"><i class='bx bx-edit-alt'></i></button>
-                                            <form action="{{ route('bracelet.delete', $product->id) }}" method="POST">
+                                            <form action="{{ route('earring.delete', $product->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm m-2 rounded-circle p-2"><i class='bx bx-trash'></i></button>
                                             </form>
-                                            <a href="{{ route('bracelet.vto', [$brand->slug, $product->slug]) }}" class="btn btn-secondary btn-sm m-2 p-2 rounded-circle"><i class='bx bx-show'></i></a>
+                                            <a href="{{ route('earring.vto', [$brand->slug, $product->slug]) }}" class="btn btn-secondary btn-sm m-2 p-2 rounded-circle"><i class='bx bx-show'></i></a>
                                         </div>
                                     </div>
                                 </div>

@@ -69,6 +69,11 @@ canvas {
     z-index: 1;
 }
 
+#faceTrackerCanvas {
+    height: 28em;
+    z-index: 1;
+}
+
 #VTOCanvas {
     height: 28em;
     z-index: 2;

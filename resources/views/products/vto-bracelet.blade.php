@@ -24,11 +24,11 @@
 
     <!-- POSEFLIP FILTER -->
     <script src="{{ asset('assets/webarrock/helpers/PoseFlipFilter.js') }}"></script>
+
+    <!-- ASSET EVORTY !!! -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
-
-    <!-- ASSET EVORTY !!! -->
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,8 +49,6 @@
     <!-- Owl carousel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/RGBELoader.js"></script>
-
-
     <!-- END OFF ASSET EVORTY-->
 </head>
 

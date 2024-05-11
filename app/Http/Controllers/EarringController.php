@@ -20,7 +20,7 @@ class EarringController extends Controller
     public function tryOn($brand, $product)
     {
         $brand = Brand::with(['product'])->where('slug', $brand)->first();
-        $product = Product::where('slug', $product)->where('type', 'bracelet')->first();
+        $product = Product::where('slug', $product)->where('type', 'earring')->first();
         return view('products.vto-earring', compact('brand', 'product'));
 
     }
