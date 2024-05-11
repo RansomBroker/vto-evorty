@@ -1,3 +1,4 @@
+@section('title', 'Create Brand')
 <div>
     <div wire:ignore.self class="modal fade" id="brandNameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="brandNameModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
