@@ -29,18 +29,18 @@ class EarringController extends Controller
     {
         $product = Str::of($request->name)->slug('-');
 
-        $path = '/brands/'.$request->slug.'/'.$product;
+        $path = 'brands/'.$request->slug.'/'.$product;
 
-        if (!File::exists(public_path().$path)) {
+        if (!File::exists($path)) {
             // create newfolder
-            File::makeDirectory(public_path().$path);
+            File::makeDirectory($path);
         }
 
         $file = $request->file('file');
         $filename = str_replace(' ', '', $file->getClientOriginalName());
 
         // Simpan file ke folder publik dengan nama yang ditentukan
-        $file->move(public_path().$path, $filename);
+        $file->move($path, $filename);
 
         // rekonstruksi data
         $savedImages = [];
@@ -53,7 +53,7 @@ class EarringController extends Controller
                             $file = $request->file('savedImages-'.$material.'-'.$list);
                             $filenameImage = str_replace(' ', '', $file->getClientOriginalName());
                             $savedImages[$material][] = ['filepath' => $path.'/'.$filenameImage, 'material' => $material, 'current' => $list];
-                            $file->move(public_path().$path, $filenameImage);
+                            $file->move($path, $filenameImage);
                         }
                     }
                 }
@@ -87,7 +87,7 @@ class EarringController extends Controller
     {
         $brand = Brand::find($product->brand_id);
 
-        $path = public_path().$product->base_folder;
+        $path = $product->base_folder;
 
         // hapus folder
         if (File::exists($path)) {

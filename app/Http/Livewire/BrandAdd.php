@@ -29,7 +29,7 @@ class BrandAdd extends Component
         session()->flash('message', 'Success create Brand');
 
         // create folder
-        File::makeDirectory(public_path().'/brands/'.$data['base_folder']);
+        File::makeDirectory('brands/'.$data['base_folder']);
         return redirect()->route('dashboard', $data['slug']);
     }
 
