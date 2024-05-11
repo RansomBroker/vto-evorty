@@ -15,6 +15,9 @@
         @yield('content')
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
+    <script>
+        const BASE_URL = "{{ url('/') }}"
+    </script>
     @livewireScripts
     @include('components.js')
     @stack('script')

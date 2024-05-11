@@ -107,6 +107,9 @@
     </div>
 </div>
 
+<script>
+    const BASE_URL = "{{ url('/') }}"
+</script>
 <!-- INCLUDE DEMO SCRIPT -->
 <script src="{{ asset('assets/webarrock/js/earring.js') }}"></script>
 </body>

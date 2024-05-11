@@ -1,7 +1,7 @@
 $(window).on('load', function() {
     let productId = $('input[name=product]').val()
     $.ajax({
-        url: '/product/earring/get-item/' + productId,
+        url: BASE_URL + '/product/earring/get-item/' + productId,
         type: 'GET',
         success: function (response) {
             let data = response.fullUrl + response.data.base_folder + '/' + response.data.filename;
@@ -30,7 +30,7 @@ $(window).on('load', function() {
                 GLTFModelURL: data,
 
                 // lighting:
-                envmapURL: '/assets/webarrock/assets/venice_sunset_512.hdr',
+                envmapURL: BASE_URL + '/assets/webarrock/assets/venice_sunset_512.hdr',
                 pointLightIntensity: 0.8,
                 pointLightY: 200, // larger -> move the pointLight to the top
                 hemiLightIntensity: 0.8,
@@ -68,7 +68,7 @@ $(window).on('load', function() {
 
                 // Init WebAR.rocks.face through the earrings 3D helper:
                 WebARRocksFaceEarrings3DHelper.init({
-                    NN: '/assets/webarrock/neuralNets/NN_EARS_4.json',
+                    NN: BASE_URL + '/assets/webarrock/neuralNets/NN_EARS_4.json',
                     taaLevel: _settings.taaLevel,
                     canvasFace: _canvases.face,
                     canvasThree: _canvases.three,

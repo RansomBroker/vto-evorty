@@ -2,7 +2,7 @@
 $(window).on('load', function () {
     let productId = $('input[name=product]').val()
     $.ajax({
-        url: '/product/bracelet/get-item/'+ productId,
+        url: BASE_URL + '/product/bracelet/get-item/'+ productId,
         type: 'GET',
         success: function(response) {
             let data = response.fullUrl+response.data.base_folder+'/'+response.data.filename;
@@ -26,7 +26,7 @@ $(window).on('load', function () {
                 })
             })
 
-            const NNPath = '/assets/webarrock/neuralNets/';
+            const NNPath = BASE_URL+'/assets/webarrock/neuralNets/';
             const NNWristVersion = '27';
             const wristModesCommonSettings = {
                 threshold: 0.83, // detection sensitivity, between 0 and 1
@@ -165,7 +165,7 @@ $(window).on('load', function () {
                 pmremGenerator.compileEquirectangularShader();
 
                 new THREE.RGBELoader().setDataType( THREE.HalfFloatType )
-                    .load('/assets/others/hotel_room_1k.hdr', function ( texture ) {
+                    .load(BASE_URL+'/assets/others/hotel_room_1k.hdr', function ( texture ) {
                         const envMap = pmremGenerator.fromEquirectangular( texture ).texture;
                         pmremGenerator.dispose();
                         scene.environment = envMap;
@@ -220,7 +220,7 @@ $(window).on('load', function () {
                 }
 
                 // load new model:
-                new THREE.GLTFLoader(threeLoadingManager).load(modelSettings.URL, function(model){
+                new THREE.GLTFLoader(threeLoadingManager).load(BASE_URL + modelSettings.URL, function(model){
                     const me = model.scene.children[0]; // instance of THREE.Mesh
                     let data = model.scene;
                     me.scale.set(1, 1, 1);

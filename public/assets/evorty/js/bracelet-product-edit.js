@@ -15,7 +15,7 @@ let rgbeLoaderEdit = new THREE.RGBELoader();
 rgbeLoaderEdit.setDataType(THREE.UnsignedByteType);
 
 rgbeLoaderEdit.load(
-    '/assets/others/hotel_room_1k.hdr',
+    BASE_URL + '/assets/others/hotel_room_1k.hdr',
     function (texture) {
         let pmremGenerator = new THREE.PMREMGenerator(rendererEdit);
         sceneEdit.environment = pmremGenerator.fromEquirectangular(texture).texture;
@@ -44,7 +44,7 @@ $('.btn-edit').off('click').on('click', function() {
     loader = new THREE.GLTFLoader();
     // ajax untuk ambil data
     $.ajax({
-        url: '/product/bracelet/get-item/'+ id,
+        url: BASE_URL + '/product/bracelet/get-item/'+ id,
         method: 'GET',
         success: function (response) {
             let data = response.fullUrl+response.data.base_folder+'/'+response.data.filename;
