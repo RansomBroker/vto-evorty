@@ -44,7 +44,7 @@ $('.btn-edit').off('click').on('click', function() {
     loader = new THREE.GLTFLoader();
     // ajax untuk ambil data
     $.ajax({
-        url: BASE_URL + 'product/bracelet/get-item/'+ id,
+        url: BASE_URL + '/product/bracelet/get-item/'+ id,
         method: 'GET',
         success: function (response) {
             let data = response.fullUrl+response.data.base_folder+'/'+response.data.filename;
@@ -438,7 +438,7 @@ $('#editProduct').on('submit', function (e) {
     formData.append('product_id', id)
 
     $.ajax({
-        url: BASE_URL + 'product/bracelet/edit',
+        url: BASE_URL + '/product/bracelet/edit',
         processData: false,
         contentType: false,
         cache: false,
