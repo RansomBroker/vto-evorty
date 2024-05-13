@@ -65,9 +65,6 @@
             <div class="col-lg-12 col-md-12 col-12 p-0">
                 <div class="card bg-transparent border-0 rounded-lg">
                     <div class="card-body card-vto-container p-0">
-                        <a href="{{ route('bracelet.vto.all', $brand->slug) }}" class="btn-back btn btn-primary rounded-circle">
-                            <i class='bx bx-arrow-back'></i>
-                        </a>
                         <div id='loading' class='modalVTO'>
                             <div>
                                 LOADING...
@@ -89,16 +86,33 @@
                         <!-- model load -->
                         <div class="col-lg-12 col-md-12 col-12 p-0 m-0 card-material-control">
                             <div class="card border-0">
-                                <div class="card-body p-0 pb-3 card-material">
+                                <div class="card-body p-0 card-material">
                                     <!-- nav -->
                                     <nav class="px-md-4 px-2 pt-2 nav nav-pills mb-2 carousel-material-list owl-carousel owl-theme border-bottom"
                                         id="materialTab" role="tablist">
 
                                     </nav>
-                                    <div class="tab-content px-md-4 px-2" id="pillsMaterialList">
+                                    <div class="tab-content px-md-4 px-2 mb-1" id="pillsMaterialList">
 
                                     </div>
-
+                                    <!-- product desc -->
+                                    <div class="d-flex justify-content-start mx-2">
+                                        <!-- back -->
+                                        <a href="{{ route('bracelet.vto.all', $brand->slug)}}" class="btn btn-back">
+                                            <i class='bx bxs-chevron-left'></i>
+                                        </a>
+                                        <div class="product-container d-flex justify-content-start">
+                                            <!-- image -->
+                                            <img class="ml-2 img-thumbnail-product"
+                                                src="{{ asset($product->base_folder.'/'.$product->thumbnail) }}" alt="">
+                                            <!-- Text -->
+                                            <p class="ml-1 pt-1 text-product">{{ $product->name }}</p>
+                                        </div>
+                                        <!-- shop now button -->
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn-shop btn-sm btn btn-dark"> Shop Now</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

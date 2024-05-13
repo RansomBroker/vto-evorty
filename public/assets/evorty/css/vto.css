@@ -41,15 +41,6 @@ body {
 }
 
 /* custom button */
-.btn-back {
-    position:absolute;
-    top: 10px;
-    left: 10px;
-    background-color: rgba(10, 10, 10, 0.64);
-    border: 0;
-    color: #fff;
-    z-index: 10;
-}
 
 .btn-cosmic-latte {
     color: #525151  ;
@@ -59,7 +50,7 @@ body {
 
 /* VTO TEMPLATE */
 .fs-material-list {
-    font-size: 0.8em;
+    font-size: 1em;
 }
 
 .tab-active {
@@ -287,8 +278,13 @@ canvas {
     border-top: 2px solid #ff8eca !important;
 }
 
-/* responsive */
+/* product desc */
+.text-product {
+    color: #242424;
+    font-weight: bolder;
+}
 
+/* responsive */
 @media (min-width: 320px) {
     .card-item-product {
         display: inline-block;
@@ -304,9 +300,9 @@ canvas {
 
     .card-item {
         display: inline-block;
-        width: 60px;
-        height: 60px;
-        margin-right: 10px;
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
         background-color: #f9f9f9;
         border: 1px solid #ccc;
         border-radius: 5px;
@@ -315,11 +311,44 @@ canvas {
     }
 
     .card-material {
-        height: 110px;
+        height: 150px;
     }
 
     .card-product {
         height: 90px;
+    }
+
+    .img-thumbnail-product {
+        width: 55px;
+        height: 55px;
+        border: 1px #939393 solid;
+        border-radius: 8px;
+    }
+
+    .btn-back {
+        background-color: #c1c1c1;
+        color: #444444;
+        text-align: center;
+        display: flex;
+        width: 18px;
+        justify-content: center;
+        align-items: center; 
+    }
+
+    .btn-shop {
+        font-size: 0.8em;
+    }
+
+    .text-product {
+        font-size: 0.8em;
+    }
+
+    .product-container {
+        width: 65% !important;
+    }
+
+    .fs-material-list {
+        font-size: 0.7em;
     }
 
     .owl-prev {
