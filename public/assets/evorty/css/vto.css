@@ -73,6 +73,7 @@ body {
     overflow: hidden;
     font-family: 'Roboto', sans-serif;
 }
+
 canvas {
     position: absolute;
     top: 0;
@@ -178,6 +179,7 @@ canvas {
 .card-material-control {
     position: absolute;
     bottom: 0;
+    z-index: 9;
 }
 
 .card-product {
@@ -403,8 +405,8 @@ canvas {
 
     .card-item-product {
         display: inline-block;
-        width: 80px;
-        height: 80px;
+        width: 80px !important;
+        height: 80px !important;
         margin-right: 10px;
         background-color: #f9f9f9;
         border: 1px solid #ccc;
