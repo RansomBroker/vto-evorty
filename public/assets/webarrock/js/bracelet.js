@@ -418,6 +418,9 @@ $(window).on("load", function () {
                 // gabungkan semua
                 _material_card_list_container = `
                     <div class="material-list-${index} owl-carousel owl-theme model-list-item tab-pane fade " id="material-list-${index}" role="tabpanel">
+                        <div class="unselected-container d-flex align-items-center justify-content-center">
+                            <i class='text-muted bx bx-minus-circle unselect-material-text'></i>
+                        </div>
                         ${_material_card_list}
                     </div>
                 `;

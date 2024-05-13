@@ -190,6 +190,15 @@ canvas {
 }
 /* model thubmnail */
 
+.unselected-container {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    padding: 0;
+    cursor: pointer;
+}
+
 .card-item {
     display: inline-block;
     width: 80px;
