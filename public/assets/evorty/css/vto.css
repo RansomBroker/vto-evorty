@@ -298,6 +298,10 @@ canvas {
         cursor: pointer;
     }
 
+    .card-product {
+        height: 90px;
+    }
+
     .card-item {
         display: inline-block;
         width: 30px;
@@ -312,10 +316,6 @@ canvas {
 
     .card-material {
         height: 150px;
-    }
-
-    .card-product {
-        height: 90px;
     }
 
     .img-thumbnail-product {
@@ -343,12 +343,12 @@ canvas {
         font-size: 0.8em;
     }
 
-    .product-container {
-        width: 65% !important;
-    }
-
     .fs-material-list {
         font-size: 0.7em;
+    }
+
+    .product-container {
+        width: 65% !important;
     }
 
     .owl-prev {
@@ -392,18 +392,6 @@ canvas {
 
 @media (min-width: 768px) {
 
-    .card-item {
-        display: inline-block;
-        width: 80px;
-        height: 80px;
-        margin-right: 10px;
-        background-color: #f9f9f9;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        cursor: pointer;
-    }
-
     .card-item-product {
         display: inline-block;
         width: 80px;
@@ -416,16 +404,65 @@ canvas {
         cursor: pointer;
     }
 
-    .card-material {
+    .card-product {
         height: 120px;
     }
 
-    .card-product {
-        height: 120px;
+    .card-item {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    .card-material {
+        height: 150px;
+    }
+
+    .img-thumbnail-product {
+        width: 55px;
+        height: 55px;
+        border: 1px #939393 solid;
+        border-radius: 8px;
+    }
+
+    .btn-back {
+        background-color: #c1c1c1;
+        color: #444444;
+        text-align: center;
+        display: flex;
+        width: 18px;
+        justify-content: center;
+        align-items: center; 
+    }
+
+    .btn-shop {
+        font-size: 0.8em;
+    }
+
+    .text-product {
+        font-size: 0.8em;
+    }
+
+    .fs-material-list {
+        font-size: 0.8em;
+    }
+
+    .product-container {
+        width: 85% !important;
     }
 }
 
 @media (min-width: 992px) {
+    .product-container {
+        width: 50% !important;
+    }
+
     .owl-prev {
         transform: translate(-66%,50%)!important;
         left:0;

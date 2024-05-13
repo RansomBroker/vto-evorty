@@ -408,7 +408,9 @@ $(window).on("load", function () {
                                          `;
                     } else {
                         _material_card_list += `
-                                        <div class="card-item card-item-${index} card-item-${index}-${key}" data-material-index="${index}" data-current-material="${key}" data-color="${color}" style="background-color: ${hexToRgb(color)};"></div>
+                                        <div class="card-item card-item-${index} card-item-${index}-${key}" data-material-index="${index}" data-current-material="${key}" data-color="${color}" style="background-color: ${hexToRgb(
+                            color
+                        )};"></div>
                                     `;
                     }
                 });
