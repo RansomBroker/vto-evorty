@@ -36,6 +36,7 @@ Route::controller(EarringController::class)->name('earring.')->group(function ()
     Route::get('/product/earring/get-item/{id}', 'getItem')->name('get.item');
     Route::delete('/product/earring/delete/{product}', 'delete')->name('delete');
     Route::post('/product/earring/edit', 'edit')->name('edit');
+    Route::get('/vto/earring/{brand}', 'tryOnAll')->name('vto.all');
     Route::get('/vto/earring/{brand}/{product}', 'tryOn')->name('vto');
 });
 

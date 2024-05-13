@@ -4,7 +4,7 @@ $(window).on('load', function() {
         url: BASE_URL + '/product/earring/get-item/' + productId,
         type: 'GET',
         success: function (response) {
-            let data = response.fullUrl + response.data.base_folder + '/' + response.data.filename;
+            let data = response.fullUrl + '/' + response.data.base_folder + '/' + response.data.filename;
             let colors = JSON.parse(response.data.color);
             let imagesData = JSON.parse(response.data.saved_images);
             let savedImages = [];
