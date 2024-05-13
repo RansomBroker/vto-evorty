@@ -26,6 +26,7 @@ Route::controller(BraceletController::class)->name('bracelet.')->group(function 
     Route::get('/product/bracelet/get-item/{id}', 'getItem')->name('get.item');
     Route::delete('/product/bracelet/delete/{product}', 'delete')->name('delete');
     Route::post('/product/bracelet/edit', 'edit')->name('edit');
+    Route::get('/vto/bracelet/{brand}', 'tryOnAll')->name('vto.all');
     Route::get('/vto/bracelet/{brand}/{product}', 'tryOn')->name('vto');
 });
 
@@ -37,3 +38,4 @@ Route::controller(EarringController::class)->name('earring.')->group(function ()
     Route::post('/product/earring/edit', 'edit')->name('edit');
     Route::get('/vto/earring/{brand}/{product}', 'tryOn')->name('vto');
 });
+

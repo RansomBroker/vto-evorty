@@ -41,6 +41,16 @@ body {
 }
 
 /* custom button */
+.btn-back {
+    position:absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(10, 10, 10, 0.64);
+    border: 0;
+    color: #fff;
+    z-index: 10;
+}
+
 .btn-cosmic-latte {
     color: #525151  ;
     background-color: #BCFFCFFF;
@@ -48,6 +58,25 @@ body {
 }
 
 /* VTO TEMPLATE */
+.fs-material-list {
+    font-size: 0.8em;
+}
+
+.tab-active {
+    color: #ff00ae !important;
+    border-radius: 0;
+    border-bottom: 3px #ff00ae solid ;
+}
+
+.btn-tab:focus {
+    outline: 0;
+    box-shadow: none !important;
+}
+
+.btn-tab:hover {
+    color: #ff00ae !important;
+}
+
 body {
     margin: 0;
     overflow: hidden;
@@ -60,22 +89,27 @@ canvas {
     width: 100%
 }
 
+#camera {
+    width: 100%;
+    height: 100vh;
+}
+
 .card-vto-container {
-    height: 28em;
+    height: 100vh;
 }
 
 #handTrackerCanvas {
-    height: 28em;
+    height: 100vh;
     z-index: 1;
 }
 
 #faceTrackerCanvas {
-    height: 28em;
+    height: 100vh;
     z-index: 1;
 }
 
 #VTOCanvas {
-    height: 28em;
+    height: 100vh;
     z-index: 2;
 }
 
@@ -89,7 +123,7 @@ canvas {
     flex-direction: column;
     position:absolute;
     width: 100%;
-    height: 28em;
+    height: 100vh;
     transition-duration: 500ms;
 }
 
@@ -98,7 +132,7 @@ canvas {
     flex-direction: column;
     position:absolute;
     width: 100%;
-    height: 20.5em;
+    height: 100vh;
     transition-duration: 500ms;
 }
 
@@ -146,6 +180,23 @@ canvas {
     cursor: pointer;
 }
 
+.card-material {
+    height: 130px;
+}
+
+.card-material-control {
+    position: absolute;
+    bottom: 0;
+}
+
+.card-product {
+    height: 120px;
+}
+
+.card-product-control {
+    position: absolute;
+    bottom: 0;
+}
 /* model thubmnail */
 
 .card-item {
@@ -160,8 +211,20 @@ canvas {
     cursor: pointer;
 }
 
+.card-item-product {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
 .card-item-active {
-    border-color: #ff00ae;
+    border-color: #ff00ae !important;
 }
 
 .owl-carousel {
@@ -224,10 +287,41 @@ canvas {
     border-top: 2px solid #ff8eca !important;
 }
 
-
 /* responsive */
 
 @media (min-width: 320px) {
+    .card-item-product {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    .card-item {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    .card-material {
+        height: 110px;
+    }
+
+    .card-product {
+        height: 90px;
+    }
+
     .owl-prev {
         transform: translate(-66%,40%)!important;
     }
@@ -269,6 +363,37 @@ canvas {
 
 @media (min-width: 768px) {
 
+    .card-item {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        margin-right: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    .card-item-product {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        margin-right: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    .card-material {
+        height: 120px;
+    }
+
+    .card-product {
+        height: 120px;
+    }
 }
 
 @media (min-width: 992px) {

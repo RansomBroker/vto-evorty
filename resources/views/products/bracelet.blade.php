@@ -64,9 +64,13 @@
                             <input type="hidden" name="slug" value="{{$brand->slug}}">
                             <input type="hidden" name="brand_id" value="{{ $brand->id }}">
                             <div class="row">
-                                <div class="form-group mb-3 col-lg-6 col-12">
+                                <div class="form-group mb-3 col-lg-2 col-12">
                                     <label for="" class="form-label">Product Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="name"  required>
+                                </div>
+                                <div class="form-group mb-3 col-lg-4 col-12">
+                                    <label for="" class="form-label">Thumbnail <span class="text-danger">*</span></label>
+                                    <input type="file" id="thumbnail" class="form-control" name="thumbnail"  required>
                                 </div>
                                 <div class="form-group mb-3 col-lg-6 col-12 row">
                                     <div class="form-group col-lg-8 col-12">

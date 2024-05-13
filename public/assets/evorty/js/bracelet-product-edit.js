@@ -47,7 +47,7 @@ $('.btn-edit').off('click').on('click', function() {
         url: BASE_URL + '/product/bracelet/get-item/'+ id,
         method: 'GET',
         success: function (response) {
-            let data = response.fullUrl+response.data.base_folder+'/'+response.data.filename;
+            let data = response.fullUrl+'/'+response.data.base_folder+'/'+response.data.filename;
             let savedImages = JSON.parse(response.data.saved_images);
             savedColorsEdit = JSON.parse(response.data.color);
             materialsEdit = [];

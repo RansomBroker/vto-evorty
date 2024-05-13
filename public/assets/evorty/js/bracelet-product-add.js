@@ -312,6 +312,7 @@ $('#addProduct').on('submit', function (e) {
     e.preventDefault();
 
     const modelFile = document.getElementById('modelFile');
+    const thumbnail = document.getElementById('thumbnail');
 
     let formData = new FormData();
     formData.append('name', $("input[name='name']").val() );
@@ -319,6 +320,7 @@ $('#addProduct').on('submit', function (e) {
     formData.append('savedColors', JSON.stringify(savedColors));
     formData.append('file', modelFile.files[0]);
     formData.append('brand_id', $("input[name='brand_id']").val());
+    formData.append('thumbnail', thumbnail.files[0]);
 
     savedImages.forEach(function(file, index) {
         formData.append('material-index[]', index )

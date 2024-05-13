@@ -23,7 +23,13 @@ class BraceletController extends Controller
         $brand = Brand::with(['product'])->where('slug', $brand)->first();
         $product = Product::where('slug', $product)->where('type', 'bracelet')->first();
         return view('products.vto-bracelet', compact('brand', 'product'));
+    }
 
+    public function tryOnAll($brand)
+    {
+        $brand = Brand::with(['product'])->where('slug', $brand)->first();
+        $products = Product::where('brand_id', $brand->id)->where('type', 'bracelet')->get();
+        return view('products.vto-bracelet-all', compact('brand', 'products'));
     }
 
     public function add(Request $request)
@@ -40,8 +46,12 @@ class BraceletController extends Controller
         $file = $request->file('file');
         $filename = str_replace(' ', '', $file->getClientOriginalName());
 
+        $thumbnailFile = $request->file('thumbnail');
+        $thumbnailName = str_replace(' ', '', $thumbnailFile->getClientOriginalName());
+
         // Simpan file ke folder publik dengan nama yang ditentukan
         $file->move($path, $filename);
+        $thumbnailFile->move($path, $thumbnailName);
 
         // rekonstruksi data
         $savedImages = [];
@@ -69,7 +79,8 @@ class BraceletController extends Controller
             'type' => 'bracelet',
             'color' => $request->savedColors,
             'filename' => $filename,
-            'saved_images' => json_encode($savedImages)
+            'saved_images' => json_encode($savedImages),
+            'thumbnail' => $thumbnailName
         ];
 
         Product::create($data);
