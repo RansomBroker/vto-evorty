@@ -190,6 +190,7 @@ canvas {
     position: absolute;
     bottom: 0;
 }
+
 /* model thubmnail */
 
 .unselected-container {
@@ -247,6 +248,10 @@ canvas {
     transform: translate(66%,50%)!important;
     right:0;
     top: 0;
+}
+
+.owl-dot {
+    display: none;
 }
 
 .prev {
