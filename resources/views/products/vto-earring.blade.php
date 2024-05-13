@@ -110,7 +110,7 @@
                                     <!-- product desc -->
                                     <div class="d-flex justify-content-start mx-2">
                                         <!-- back -->
-                                        <a href="{{ route('bracelet.vto.all', $brand->slug)}}" class="btn btn-back">
+                                        <a href="{{ route('earring.vto.all', $brand->slug)}}" class="btn btn-back">
                                             <i class='bx bxs-chevron-left'></i>
                                         </a>
                                         <div class="product-container d-flex justify-content-start">

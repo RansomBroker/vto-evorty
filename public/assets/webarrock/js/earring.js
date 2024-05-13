@@ -27,12 +27,13 @@ $(window).on("load", function () {
                                 image.material == material
                             ) {
                                 savedImages[material][current] =
-                                    response.fullUrl + image.filepath;
+                                    response.fullUrl + "/" + image.filepath;
                             }
                         });
                     });
                 });
             });
+
             const PI = Math.PI;
             const _settings = {
                 // 3D model:
@@ -196,14 +197,147 @@ $(window).on("load", function () {
             }
 
             function load_GLTF(modelURL, isRight, isLeft) {
+                let _material_tab = ``;
+
                 new THREE.GLTFLoader().load(modelURL, function (gltf) {
                     const model = gltf.scene;
-                    console.log(model);
+
                     model.scale.multiplyScalar(100); // because the model is exported in meters. convert it to cm
+
                     set_shinyMetal(model);
+
+                    let i = 0;
+                    // travese to create materials
+                    model.traverse(function (child) {
+                        if (
+                            child instanceof THREE.Mesh &&
+                            !materials.includes(child.material)
+                        ) {
+                            materials.push(child.material);
+
+                            // assign name to materials
+                            materials[i].name =
+                                materials[i].name ||
+                                "Material " + (materials.length - 1);
+
+                            // render card
+                            if (colors.length > 0 && colors[i] != undefined) {
+                                // assing color to materials
+                                materials[i].savedColors =
+                                    materials[i].savedColors ||
+                                    (colors.length > 0 &&
+                                        colors[i] != undefined)
+                                        ? colors[i]
+                                        : [];
+
+                                // asign warna dasar menjadi warna pertama
+                                materials[i].color.setStyle(colors[i][0]);
+
+                                WebARRocksFaceEarrings3DHelper.rerender_object();
+                            }
+
+                            // menampilkan card list jika color > 1
+                            if (
+                                colors.length > 0 &&
+                                colors[i] != undefined &&
+                                colors[i].length > 1
+                            ) {
+                                console.log(materials[i].name);
+                                console.log(
+                                    "total color saved " + colors[i].length
+                                );
+                                _material_tab += `
+                                <button class="btn btn-tab pb-1 p-0 fs-material-list text-uppercase text-body font-weight-bold nav-item tab-selected" id="material-${i}-tab" data-material="${i}" data-toggle="tab" href="#material-list-${i}" role="tab">
+                                    ${materials[i].name}
+                                </button>
+                            `;
+                                createCard(i);
+                            }
+
+                            i++;
+                        }
+                        $("#materialTab").html(_material_tab);
+                    });
+
+                    //run owl
+                    $(".carousel-material-list").owlCarousel({
+                        loop: false,
+                        margin: 10,
+                        nav: false,
+                        autoWidth: true,
+                        responsive: {
+                            0: {
+                                items: 5,
+                            },
+                            600: {
+                                items: 10,
+                            },
+                            1000: {
+                                items: 10,
+                            },
+                        },
+                    });
+
                     _three.earringRight.add(model);
                     _three.earringLeft.add(model.clone());
                 });
+            }
+
+            function createCard(index) {
+                let _material_card_list = ``;
+                let _material_card_list_container = ``;
+
+                //iterate color
+                materials[index].savedColors.forEach(function (color, key) {
+                    if (savedImages[index][key] !== null) {
+                        let image = savedImages[index][key];
+                        _material_card_list += `
+                                            <img src="${image}" alt="icon" class="card-item card-item-${index} card-item-${index}-${key}" data-material-index="${index}" data-current-material="${key}" data-color="${color}"/>
+                                         `;
+                    } else {
+                        _material_card_list += `
+                                        <div class="card-item card-item-${index} card-item-${index}-${key}" data-material-index="${index}" data-current-material="${key}" data-color="${color}" style="background-color: ${hexToRgb(
+                            color
+                        )};"></div>
+                                    `;
+                    }
+                });
+
+                // gabungkan semua
+                _material_card_list_container = `
+                    <div class="material-list-${index} owl-carousel owl-theme model-list-item tab-pane fade " id="material-list-${index}" role="tabpanel">
+                        <div class="unselected-container d-flex align-items-center justify-content-center">
+                            <i class='text-muted bx bx-minus-circle unselect-material-text'></i>
+                        </div>
+                        ${_material_card_list}
+                    </div>
+                `;
+
+                // append all
+                $("#pillsMaterialList").append(_material_card_list_container);
+
+                //run owl
+                $(".material-list-" + index).owlCarousel({
+                    loop: false,
+                    nav: false,
+                    autoWidth: true,
+                });
+
+                // hide all carousel
+                $(".material-list-" + index).addClass("d-none");
+            }
+
+            function hexToRgb(hex) {
+                // Hilangkan tanda '#' jika ada
+                hex = hex.replace(/^#/, "");
+
+                // Pisahkan nilai warna menjadi komponen R, G, dan B
+                var r = parseInt(hex.substring(0, 2), 16);
+                var g = parseInt(hex.substring(2, 4), 16);
+                var b = parseInt(hex.substring(4, 6), 16);
+
+                // Kembalikan nilai RGB dalam format string
+                return "rgb(" + r + ", " + g + ", " + b + ")";
             }
 
             function set_shinyMetal(model) {
@@ -257,6 +391,50 @@ $(window).on("load", function () {
             }
 
             main();
+
+            // buat fungsi card click
+            $(document).on("click", ".card-item", function () {
+                let color = $(this).data("color");
+                let materialIndex = $(this).data("material-index");
+                let currentMaterial = $(this).data("current-material");
+
+                //ubah warna
+                materials[materialIndex].color.setStyle(color);
+
+                WebARRocksFaceEarrings3DHelper.rerender_object();
+
+                //remove card active
+                $(".card-item-" + materialIndex).removeClass(
+                    "card-item-active"
+                );
+
+                // set card active baru
+                $(
+                    ".card-item-" + materialIndex + "-" + currentMaterial
+                ).addClass("card-item-active");
+            });
+
+            // fungsi create card berdasarkan tab yg diklik
+            $(document).on("click", ".tab-selected", function () {
+                let currentMaterial = $(this).data("material");
+
+                // hapus tab-active yang ada
+                $(".tab-selected").removeClass("tab-active");
+
+                // tambahkan d-none ke semua kelas
+                $(".model-list-item").addClass("d-none");
+
+                // tambahkan tab active ke currenttab
+                $("#material-" + currentMaterial + "-tab").addClass(
+                    "tab-active"
+                );
+
+                // tambahkan show ke list yg dipilih
+                $(".material-list-" + currentMaterial).addClass("show");
+
+                // hapus yang hanya terpanggil
+                $(".material-list-" + currentMaterial).removeClass("d-none");
+            });
         },
     });
 });
