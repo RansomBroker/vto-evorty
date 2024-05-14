@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\BraceletController;
 use App\Http\Controllers\EarringController;
-use App\Http\Livewire\BraceletProduct;
+use App\Http\Controllers\WatchController;
 use App\Http\Livewire\BrandAdd;
 use App\Http\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
@@ -40,3 +40,12 @@ Route::controller(EarringController::class)->name('earring.')->group(function ()
     Route::get('/vto/earring/{brand}/{product}', 'tryOn')->name('vto');
 });
 
+Route::controller(WatchController::class)->name('watch.')->group(function () {
+    Route::get('/product/watch/{slug}', 'view')->name('view');
+    Route::post('/product/watch/add', 'add')->name('add');
+    Route::get('/product/watch/get-item/{id}', 'getItem')->name('get.item');
+    Route::delete('/product/watch/delete/{product}', 'delete')->name('delete');
+    Route::post('/product/watch/edit', 'edit')->name('edit');
+    Route::get('/vto/watch/{brand}', 'tryOnAll')->name('vto.all');
+    Route::get('/vto/watch/{brand}/{product}', 'tryOn')->name('vto');
+});

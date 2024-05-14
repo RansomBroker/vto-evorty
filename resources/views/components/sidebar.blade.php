@@ -20,7 +20,7 @@
         </li>
 
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text"> Category</span>
+            <span class="menu-header-text">Product Category</span>
         </li>
 
         <li class="menu-item @if(Route::is('earring.view')) active @endif">
@@ -38,6 +38,12 @@
         <li class="menu-item @if(Route::is('bracelet.view')) active @endif">
             <a href="{{ route('bracelet.view', $url) }}" class="menu-link">
                 <div data-i18n="Analytics">Bracelet</div>
+            </a>
+        </li>
+
+        <li class="menu-item @if(Route::is('watch.view')) active @endif">
+            <a href="{{ route('watch.view', $url) }}" class="menu-link">
+                <div data-i18n="Analytics">Watch</div>
             </a>
         </li>
 
