@@ -478,7 +478,7 @@ $(window).on("load", function () {
 
             function add_wholeHand(threeLoadingManager) {
                 new THREE.GLTFLoader(threeLoadingManager).load(
-                    BASE_URL + "/assets/debug/debugHand.glb",
+                    BASE_URL + "/assets/webarrock/debug/debugHand.glb",
                     function (model) {
                         const debugHandModel = model.scene.children[0];
                         debugHandModel.traverse(function (threeStuff) {

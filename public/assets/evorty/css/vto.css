@@ -92,17 +92,17 @@ canvas {
 }
 
 #handTrackerCanvas {
-    height: 100vh;
+    height: 80vh;
     z-index: 1;
 }
 
 #faceTrackerCanvas {
-    height: 100vh;
+    height: 80vh;
     z-index: 1;
 }
 
 #VTOCanvas {
-    height: 100vh;
+    height: 80vh;
     z-index: 2;
 }
 
@@ -135,6 +135,7 @@ canvas {
     opacity: 1;
     z-index: 10;
 }
+
 #loading > div {
     margin: auto;
     font-size: 32pt;
