@@ -308,10 +308,10 @@ $(window).on("load", function () {
                 // gabungkan semua
                 _material_card_list_container = `
                     <div class="material-list-container-${index} material-list-container justify-content-start tab-pane fade" id="material-list-container-${index}" role="tabpanel">
-                        <div class="unselected-container d-flex align-items-center justify-content-center">
+                        <div class="unselected-container unselected-container-${index} d-flex align-items-center justify-content-center">
                             <img src="${
                                 BASE_URL + "/assets/others/unselected.png"
-                            }" class="unselected-img">
+                            }" class="unselected-img unselected-material-btn btn-rounded" data-material-index="${index}">
                         </div>
                         <div class="material-list-${index} owl-carousel owl-theme">
                             ${_material_card_list}
@@ -406,6 +406,11 @@ $(window).on("load", function () {
                 let materialIndex = $(this).data("material-index");
                 let currentMaterial = $(this).data("current-material");
 
+                materials[materialIndex].visible = true;
+                $(".unselected-container-" + materialIndex).removeClass(
+                    "unselected-material-active"
+                );
+
                 //ubah warna
                 materials[materialIndex].color.setStyle(color);
 
@@ -442,6 +447,19 @@ $(window).on("load", function () {
                 );
                 $(".material-list-container-" + currentMaterial).removeClass(
                     "d-none"
+                );
+            });
+
+            // sembunyikan material
+            $(document).on("click", ".unselected-material-btn", function () {
+                let materialIndex = $(this).data("material-index");
+                materials[materialIndex].visible = false;
+                $(".unselected-container-" + materialIndex).addClass(
+                    "unselected-material-active"
+                );
+
+                $(".card-item-" + materialIndex).removeClass(
+                    "card-item-active"
                 );
             });
         },

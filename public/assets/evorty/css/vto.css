@@ -367,8 +367,8 @@ canvas {
 
     .card-item {
         display: inline-block;
-        width: 30px;
-        height: 30px;
+        width: 30px !important;
+        height: 30px !important;
         margin-right: 5px;
         background-color: #f9f9f9;
         border: 1px solid #ccc;
