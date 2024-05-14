@@ -195,12 +195,17 @@ canvas {
 
 /* model thubmnail */
 .unselected-container {
+    border-radius: 50%;
     width: 30px;
     height: 30px;
     margin-right: 5px;
-    padding: 0;
     cursor: pointer;
 }
+
+.unselected-material-active {
+    border: 1px #ff00ae solid !important;
+}
+
 
 .unselected-img {
     width: 30px;
