@@ -87,16 +87,17 @@
                         <div class="col-lg-12 col-md-12 col-12 p-0 m-0 card-material-control">
                             <div class="card border-0">
                                 <div class="card-body p-0 card-material">
+
                                     <!-- nav -->
-                                    <nav class="px-md-4 px-2 pt-2 nav nav-pills mb-2 carousel-material-list owl-carousel owl-theme border-bottom"
+                                    <nav class="px-2 pt-1 nav nav-pills mb-2 carousel-material-list owl-carousel owl-theme border-bottom"
                                         id="materialTab" role="tablist">
 
                                     </nav>
-                                    <div class="tab-content px-md-4 px-2 mb-1" id="pillsMaterialList">
-
+                                    <div class="tab-content px-2 mb-1" id="pillsMaterialList">
                                     </div>
+
                                     <!-- product desc -->
-                                    <div class="d-flex justify-content-start mx-2">
+                                    <div class="d-flex justify-content-start px-2">
                                         <!-- back -->
                                         <a href="{{ route('bracelet.vto.all', $brand->slug)}}" class="btn btn-back">
                                             <i class='bx bxs-chevron-left'></i>

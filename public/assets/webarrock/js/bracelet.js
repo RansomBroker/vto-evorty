@@ -356,7 +356,9 @@ $(window).on("load", function () {
                                         "total color saved " + colors[i].length
                                     );
                                     _material_tab += `
-                                    <button class="btn btn-tab pb-1 p-0 fs-material-list text-uppercase text-body font-weight-bold nav-item tab-selected" id="material-${i}-tab" data-material="${i}" data-toggle="tab" href="#material-list-${i}" role="tab">
+                                    <button class="btn btn-tab pb-1 p-0 fs-material-list text-uppercase text-body font-weight-bold nav-item tab-selected ${
+                                        i == 0 ? "tab-active" : ""
+                                    } " id="material-${i}-tab" data-material="${i}" data-toggle="tab" href="#material-list-container-${i}" role="tab">
                                         ${materials[i].name}
                                     </button>
                                 `;
@@ -417,11 +419,15 @@ $(window).on("load", function () {
 
                 // gabungkan semua
                 _material_card_list_container = `
-                    <div class="material-list-${index} owl-carousel owl-theme model-list-item tab-pane fade " id="material-list-${index}" role="tabpanel">
+                    <div class="material-list-container-${index} material-list-container justify-content-start tab-pane fade" id="material-list-container-${index}" role="tabpanel">
                         <div class="unselected-container d-flex align-items-center justify-content-center">
-                            <i class='text-muted bx bx-minus-circle unselect-material-text'></i>
+                            <img src="${
+                                BASE_URL + "/assets/others/unselected.png"
+                            }" class="unselected-img">
                         </div>
-                        ${_material_card_list}
+                        <div class="material-list-${index} owl-carousel owl-theme">
+                            ${_material_card_list}
+                        </div>
                     </div>
                 `;
 
@@ -435,8 +441,10 @@ $(window).on("load", function () {
                     autoWidth: true,
                 });
 
-                // hide all carousel
-                $(".material-list-" + index).addClass("d-none");
+                $(".material-list-container-" + index).addClass("d-none");
+
+                $(".material-list-container-0").removeClass("d-none");
+                $(".material-list-container-0").addClass("d-flex show active");
             }
 
             function start(three) {
@@ -647,31 +655,24 @@ $(window).on("load", function () {
                 // hapus tab-active yang ada
                 $(".tab-selected").removeClass("tab-active");
 
-                // tambahkan d-none ke semua kelas
-                $(".model-list-item").addClass("d-none");
-
                 // tambahkan tab active ke currenttab
                 $("#material-" + currentMaterial + "-tab").addClass(
                     "tab-active"
                 );
 
-                // tambahkan show ke list yg dipilih
-                $(".material-list-" + currentMaterial).addClass("show");
+                $(".material-list-container").addClass("d-none");
+                $(".material-list-container").removeClass("d-flex active show");
 
-                // hapus yang hanya terpanggil
-                $(".material-list-" + currentMaterial).removeClass("d-none");
+                $(".material-list-container-" + currentMaterial).addClass(
+                    "d-flex active show"
+                );
+                $(".material-list-container-" + currentMaterial).removeClass(
+                    "d-none"
+                );
             });
 
             main();
         },
-    });
-
-    //click event handle change model
-    $(document).on("click", ".change-model", function () {
-        $(".change-model").removeClass("model-active");
-        $(this).addClass("model-active");
-        let modelId = "wrist" + $(this).data("key");
-        load_model(modelId);
     });
 });
 
