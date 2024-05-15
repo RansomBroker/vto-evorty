@@ -56,3 +56,7 @@ Route::controller(LipstickController::class)->name('lipstick.')->group(function(
     Route::get('/product/lipstick/get-item/{id}', 'getItem')->name('get.item');
     Route::get('/vto/lipstick/test/product/{id}', 'tryOn')->name('vto');
 });
+
+Route::get('/vto/face/test', function () {
+    return view('products.vto-face');
+});
