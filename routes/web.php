@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BraceletController;
 use App\Http\Controllers\EarringController;
+use App\Http\Controllers\LipstickController;
 use App\Http\Controllers\WatchController;
 use App\Http\Livewire\BrandAdd;
 use App\Http\Livewire\Dashboard;
@@ -48,4 +49,10 @@ Route::controller(WatchController::class)->name('watch.')->group(function () {
     Route::post('/product/watch/edit', 'edit')->name('edit');
     Route::get('/vto/watch/{brand}', 'tryOnAll')->name('vto.all');
     Route::get('/vto/watch/{brand}/{product}', 'tryOn')->name('vto');
+});
+
+Route::controller(LipstickController::class)->name('lipstick.')->group(function() {
+    Route::get('/vto/lipstick/test', 'tryOnAll')->name('vto.all');
+    Route::get('/product/lipstick/get-item/{id}', 'getItem')->name('get.item');
+    Route::get('/vto/lipstick/test/product/{id}', 'tryOn')->name('vto');
 });
