@@ -77,13 +77,13 @@
 
 </head>
 
-<body class="bg-cosmic-latte w-full overflow-auto d-flex align-items-center">
+<body class="bg-dark-alpha">
     <input type="hidden" name="product" value="{{ $product->id }}">
 
-    <div class="container-fluid container-control p-0">
-        <div class="row justify-content-center m-0">
+    <div class="container-fluid p-0">
+        <div class="row justify-content-center m-0 container-vto d-flex align-items-center">
             <!-- canvas-->
-            <div class="col-lg-12 col-md-12 col-12 p-0">
+            <div class="col-lg-8 col-md-12 col-12 p-0">
                 <div class="card bg-transparent border-0 rounded-lg">
                     <div class="card-body card-vto-container p-0">
                         <div id='loading' class='modalVTO fade'>
@@ -97,7 +97,7 @@
                         </div>
                         <!-- model load -->
                         <div class="col-lg-12 col-md-12 col-12 p-0 m-0 card-material-control">
-                            <div class="card border-0">
+                            <div class="card border-0 rounded-0">
                                 <div class="card-body p-0 card-material">
 
                                     <!-- nav -->
