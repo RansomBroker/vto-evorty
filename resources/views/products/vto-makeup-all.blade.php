@@ -95,7 +95,7 @@
                                                 @foreach ($data as $products)
                                                 @foreach ($products as $product)
                                                 <div class="d-flex justify-content-center card-item-makeup flex-wrap">
-                                                    <a href="{{ route('makeup.vto', [$product['link'], $product['name']])}}"
+                                                    <a href="{{ route('makeup.vto', [$product['link'], $product['slug'], $product['id']])}}"
                                                         class="stretched-link"></a>
                                                     <img src="{{ asset('assets/' . $product["icon"]) }}" alt=""
                                                         class="image-product pb-1">
@@ -113,7 +113,7 @@
                                                 class="d-flex justify-content-start owl-carousel owl-theme product-list-{{$i}}">
                                                 @foreach($products as $product)
                                                 <div class="d-flex justify-content-center card-item-makeup flex-wrap ">
-                                                    <a href="{{ route('makeup.vto', [$product['link'], $product['name']])}}"
+                                                    <a href="{{ route('makeup.vto', [$product['link'], $product['slug'], $product['id']])}}"
                                                         class="stretched-link"></a>
                                                     <img src="{{ asset('assets/' . $product["icon"]) }}" alt=""
                                                         class="image-product pb-1">

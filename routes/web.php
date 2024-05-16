@@ -68,13 +68,15 @@ Route::get('/vto/makeup/test', function() {
             [
                 "id" => 1,
                 'name' => "lipstick one",
+                'slug' => "lipstick-one",
                 "icon" => "others/lipstick1.png",
                 "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
-                "link" => 'lipstick'
+                "link" => "lipstick"
             ],
             [
                 "id" => 2,
                 'name' => "lipstick two",
+                'slug' => "lipstick-two",
                 "icon" => "others/lipstick1.png",
                 "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
                 "link" => 'lipstick'
@@ -85,6 +87,7 @@ Route::get('/vto/makeup/test', function() {
             [
                 "id" => 1,
                 'name' => "blush one",
+                'slug' => "lipstick-two",
                 "icon" => "others/lipstick1.png",
                 "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
                 "link" => "blush"
@@ -95,6 +98,7 @@ Route::get('/vto/makeup/test', function() {
             [
                 "id" => 1,
                 'name' => "eye liner one",
+                'slug' => "eye-liner-one",
                 "icon" => "others/lipstick1.png",
                 "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
                 "link" => "eyeliner"
@@ -105,6 +109,7 @@ Route::get('/vto/makeup/test', function() {
             [
                 "id" => 1,
                 'name' => "eye shadow one",
+                'slug' => "eye-shadow-one",
                 "icon" => "others/lipstick1.png",
                 "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
                 "link" => "eyeshadow"
@@ -115,6 +120,7 @@ Route::get('/vto/makeup/test', function() {
             [
                 "id" => 1,
                 'name' => "foundation one",
+                'slug' => "foundation-one",
                 "icon" => "others/lipstick1.png",
                 "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
                 "link" => "foundation"
@@ -125,6 +131,11 @@ Route::get('/vto/makeup/test', function() {
     return view('products.vto-makeup-all', compact('data'));
 })->name('makeup.all');
 
-Route::get('/vto/makeup/{link}/{product}', function() {
+Route::get('/vto/makeup/{link}/{product}/{id}', function($link, $product, $id) {
+    
+    if($link == 'lipstick') {
+        
+    }
+
     
 })->name('makeup.vto');
