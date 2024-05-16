@@ -83,7 +83,7 @@ $data = [
             'name' => "lipstick two",
             'slug' => "lipstick-two",
             "icon" => "others/lipstick1.png",
-            "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
+            "savedColors" => ['#f71302', '#fc392b', '#fc5f53'],
             "link" => 'lipstick'
         ],
     ],
@@ -92,9 +92,9 @@ $data = [
         [
             "id" => 1,
             'name' => "blush one",
-            'slug' => "lipstick-two",
+            'slug' => "blush-one",
             "icon" => "others/lipstick1.png",
-            "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
+            "savedColors" => ['#f71302', '#fc392b', '#fc5f53'],
             "link" => "blush"
         ],
     ],
@@ -150,6 +150,10 @@ Route::get('/vto/makeup/{link}/{slug}/{id}', function($link, $slug, $id) use ($d
 
     if ($product['link'] == "lipstick") {
         return view('products.vto-lipstick', compact('product'));
+    }
+
+    if ($product['link'] == "blush") {
+        return view('products.vto-blush', compact('product'));
     }
     
     
