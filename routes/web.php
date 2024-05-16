@@ -131,7 +131,7 @@ Route::get('/vto/makeup/test', function() {
     return view('products.vto-makeup-all', compact('data'));
 })->name('makeup.all');
 
-Route::get('/vto/makeup/{link}/{product}/{id}', function($link, $product, $id) {
+Route::get('/vto/makeup/{link}/{slug}/{id}', function($link, $slug, $id) {
     
     if($link == 'lipstick') {
         
