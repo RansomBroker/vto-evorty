@@ -1,11 +1,14 @@
 $(window).on("load", function () {
-    let productId = $("input[name=product]").val();
+    let id = $("input[name=id]").val();
+    let name = $("input[name=name]").val();
     $.ajax({
-        url: BASE_URL + "/product/lipstick/get-item/" + productId,
+        url: BASE_URL + "/product/lipstick/get-item" + "/" + name + "/" + id,
         type: "GET",
         success: function (response) {
             let _canvasVideo = null,
                 _canvasAR = null;
+
+            console.log(response.data.savedColors);
 
             const mouthWiden = 0.01;
             const upperLipOut = 0; //0.01;
@@ -14,6 +17,10 @@ $(window).on("load", function () {
             const SHAPELIPS = {
                 name: "LIPS",
 
+                // list of the points involved in this shape.
+                // each point is given as its label
+                // the label depends on the used neural network
+                // run WEBARROCKSFACE.get_LMLabels() to get all labels
                 points: [
                     "lipsExt0", // 0
                     "lipsExtTop1", // 1
@@ -43,6 +50,14 @@ $(window).on("load", function () {
                     "lipsIntBot19", // 19
                 ],
 
+                // iVals are interpolated values
+                // a value is given for each shape point
+                // in the same order as points array
+                // a value can have between 0 and 4 elements
+                // the value will be retrieved in the fragment shader used to color the shape
+                // as a float, vec2, vec3 or vec4 depending on its components count
+                // it is useful to not color evenly the shape
+                // we can apply gradients, smooth borders, ...
                 iVals: [
                     [1], // lipsExt0
                     [1], // lipsExtTop1
@@ -72,6 +87,8 @@ $(window).on("load", function () {
                     [-1], // lipsIntBot1
                 ],
 
+                // how to group shape points to draw triangles
+                // each value is an index in shape points array
                 tesselation: [
                     // upper lip:
                     0,
@@ -138,6 +155,21 @@ $(window).on("load", function () {
                     16, //*/
                 ],
 
+                // interpolated points:
+                // to make shape border smoother, we can add computed points
+                // each value of this array will insert 2 new points
+                //
+                // the first point will be between the first 2 points indices
+                // the second point will be between the last 2 points indices
+                //
+                // the first value of ks controls the position of the first interpolated point
+                // if -1, it will match the first point, if 0 it will match the middle point
+                // the second value of ks controls the position of the second interpolated point
+                // if 1, it will match the last point, if 0 it will match the middle point
+                //
+                // computed using Cubic Hermite interpolation
+                // the point is automatically inserted into the tesselation
+                // points are given by their indices in shape points array
                 interpolations: [
                     {
                         // upper lip sides:
@@ -164,6 +196,12 @@ $(window).on("load", function () {
                     },
                 ],
 
+                // we can move points along their normals using the outline feature.
+                // an outline is specified by the list of point indices in shape points array
+                // it will be used to compute the normals, the inside and the outside
+                //
+                // displacement array are the displacement along normals to apply
+                // for each point of the outline.
                 outlines: [
                     {
                         // upper lip. Indices of points in points array:
@@ -230,37 +268,57 @@ $(window).on("load", function () {
                     },
                 ],
 
+                // RENDERING:
+                // GLSLFragmentSource is the GLSL source code of the shader used
+                // to fill the shape:
+
+                // Debug interpolated vals:
+                /*GLSLFragmentSource: "void main(void){\n\
+                  gl_FragColor = vec4(0.5 + 0.5*iVal, 0., 1.);\n\
+                }" //*/
+
+                // uniform color:
+                /*GLSLFragmentSource: "void main(void){\n\
+                  gl_FragColor = vec4(0.1, 0.0, 0.2, 0.5);\n\
+                }" //*/
+
+                // debug samplerVideo and vUV:
+                /*GLSLFragmentSource: "void main(void){\n\
+                  gl_FragColor = vec4(0., 1., 0., 1.) * texture2D(samplerVideo, vUV);\n\
+                }" //*/
+
+                // color with smooth border:
                 GLSLFragmentSource:
                     "\n\
-    const vec2 ALPHARANGE = vec2(0.1, 0.6);\n\
-    const vec3 LUMA = 1.3 * vec3(0.299, 0.587, 0.114);\n\
-    \n\
-    float linStep(float edge0, float edge1, float x){\n\
-      float val = (x - edge0) / (edge1 - edge0);\n\
-      return clamp(val, 0.0, 1.0);\n\
-    }\n\
-    \n\
-    \n\
-    void main(void){\n\
-      // get grayscale video color:\n\
-      vec3 videoColor = texture2D(samplerVideo, vUV).rgb;\n\
-      vec3 videoColorGs = vec3(1., 1., 1.) * dot(videoColor, LUMA);\n\
-      \n\
-      // computer alpha:\n\
-      float alpha = 1.0; // no border smoothing\n\
-      alpha *= linStep(-1.0, -0.95, abs(iVal)); // interior\n\
-      alpha *= 0.5 + 0.5 * linStep(1.0, 0.6, abs(iVal)); // exterior smoothing\n\
-      float alphaClamped = ALPHARANGE.x + (ALPHARANGE.y - ALPHARANGE.x) * alpha;\n\
-      \n\
-      // mix colors:\n\
-      vec3 color = videoColorGs * lipstickColor;\n\
-      gl_FragColor = vec4(color*alphaClamped, alphaClamped);\n\
-      \n\
-      // DEBUG ZONE:\n\
-      //gl_FragColor = vec4(0., alpha, 0., 1.0);\n\
-      //gl_FragColor = vec4(alpha, alpha, alphaClamped, 1.0);\n\
-      //gl_FragColor = vec4(0., 1., 0., 1.);\n\
-    }",
+                  const vec2 ALPHARANGE = vec2(0.1, 0.6);\n\
+                  const vec3 LUMA = 1.3 * vec3(0.299, 0.587, 0.114);\n\
+                  \n\
+                  float linStep(float edge0, float edge1, float x){\n\
+                    float val = (x - edge0) / (edge1 - edge0);\n\
+                    return clamp(val, 0.0, 1.0);\n\
+                  }\n\
+                  \n\
+                  \n\
+                  void main(void){\n\
+                    // get grayscale video color:\n\
+                    vec3 videoColor = texture2D(samplerVideo, vUV).rgb;\n\
+                    vec3 videoColorGs = vec3(1., 1., 1.) * dot(videoColor, LUMA);\n\
+                    \n\
+                    // computer alpha:\n\
+                    float alpha = 1.0; // no border smoothing\n\
+                    alpha *= linStep(-1.0, -0.95, abs(iVal)); // interior\n\
+                    alpha *= 0.5 + 0.5 * linStep(1.0, 0.6, abs(iVal)); // exterior smoothing\n\
+                    float alphaClamped = ALPHARANGE.x + (ALPHARANGE.y - ALPHARANGE.x) * alpha;\n\
+                    \n\
+                    // mix colors:\n\
+                    vec3 color = videoColorGs * lipstickColor;\n\
+                    gl_FragColor = vec4(color*alphaClamped, alphaClamped);\n\
+                    \n\
+                    // DEBUG ZONE:\n\
+                    //gl_FragColor = vec4(0., alpha, 0., 1.0);\n\
+                    //gl_FragColor = vec4(alpha, alpha, alphaClamped, 1.0);\n\
+                    //gl_FragColor = vec4(0., 1., 0., 1.);\n\
+                  }",
                 uniforms: [
                     {
                         name: "lipstickColor",

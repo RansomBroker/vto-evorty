@@ -8,6 +8,10 @@ use App\Http\Livewire\BrandAdd;
 use App\Http\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
 
+// another function
+use Illuminate\Support\Collection;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,81 +65,107 @@ Route::get('/vto/face/test', function () {
     return view('products.vto-face');
 });
 
-Route::get('/vto/makeup/test', function() {
-    $data = [
-        // lip
-        [
-            [
-                "id" => 1,
-                'name' => "lipstick one",
-                'slug' => "lipstick-one",
-                "icon" => "others/lipstick1.png",
-                "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
-                "link" => "lipstick"
-            ],
-            [
-                "id" => 2,
-                'name' => "lipstick two",
-                'slug' => "lipstick-two",
-                "icon" => "others/lipstick1.png",
-                "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
-                "link" => 'lipstick'
-            ],
-        ],
-        // blush 
-        [
-            [
-                "id" => 1,
-                'name' => "blush one",
-                'slug' => "lipstick-two",
-                "icon" => "others/lipstick1.png",
-                "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
-                "link" => "blush"
-            ],
-        ],
-        // Eye Liner
-        [
-            [
-                "id" => 1,
-                'name' => "eye liner one",
-                'slug' => "eye-liner-one",
-                "icon" => "others/lipstick1.png",
-                "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
-                "link" => "eyeliner"
-            ],
-        ],
-        // Eye Shadow
-        [
-            [
-                "id" => 1,
-                'name' => "eye shadow one",
-                'slug' => "eye-shadow-one",
-                "icon" => "others/lipstick1.png",
-                "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
-                "link" => "eyeshadow"
-            ],
-        ],
-        // Foundation
-        [
-            [
-                "id" => 1,
-                'name' => "foundation one",
-                'slug' => "foundation-one",
-                "icon" => "others/lipstick1.png",
-                "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
-                "link" => "foundation"
-            ],
-        ],
-    ];
+// --------------------------------------------------------------------------------
 
+$data = [
+    // lip
+    [
+        [
+            "id" => 1,
+            'name' => "lipstick one",
+            'slug' => "lipstick-one",
+            "icon" => "others/lipstick1.png",
+            "savedColors" => ['#f71302', '#fc392b', '#fc5f53'],
+            "link" => "lipstick"
+        ],
+        [
+            "id" => 2,
+            'name' => "lipstick two",
+            'slug' => "lipstick-two",
+            "icon" => "others/lipstick1.png",
+            "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
+            "link" => 'lipstick'
+        ],
+    ],
+    // blush 
+    [
+        [
+            "id" => 1,
+            'name' => "blush one",
+            'slug' => "lipstick-two",
+            "icon" => "others/lipstick1.png",
+            "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
+            "link" => "blush"
+        ],
+    ],
+    // Eye Liner
+    [
+        [
+            "id" => 1,
+            'name' => "eye liner one",
+            'slug' => "eye-liner-one",
+            "icon" => "others/lipstick1.png",
+            "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
+            "link" => "eyeliner"
+        ],
+    ],
+    // Eye Shadow
+    [
+        [
+            "id" => 1,
+            'name' => "eye shadow one",
+            'slug' => "eye-shadow-one",
+            "icon" => "others/lipstick1.png",
+            "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
+            "link" => "eyeshadow"
+        ],
+    ],
+    // Foundation
+    [
+        [
+            "id" => 1,
+            'name' => "foundation one",
+            'slug' => "foundation-one",
+            "icon" => "others/lipstick1.png",
+            "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
+            "link" => "foundation"
+        ],
+    ],
+];
+
+
+Route::get('/vto/makeup/test', function() use ($data){
     return view('products.vto-makeup-all', compact('data'));
-})->name('makeup.all');
+})->name('makeup.vto.all');
 
-Route::get('/vto/makeup/{link}/{slug}/{id}', function($link, $slug, $id) {
-    
-    if($link == 'lipstick') {
-        
+Route::get('/vto/makeup/{link}/{slug}/{id}', function($link, $slug, $id) use ($data) {
+
+    $collection = collect($data)->flatMap(function ($category) {
+        return $category;
+    });
+
+    $product = $collection->first(function ($item) use ($id, $slug) {
+        return $item['id'] == $id && $item['slug'] == $slug;
+    });
+
+    if ($product['link'] == "lipstick") {
+        return view('products.vto-lipstick', compact('product'));
     }
-
+    
     
 })->name('makeup.vto');
+
+Route::get('/product/lipstick/get-item/{slug}/{id}', function($slug, $id) use ($data){
+    $collection = collect($data)->flatMap(function ($category) {
+        return $category;
+    });
+
+    $product = $collection->first(function ($item) use ($id, $slug) {
+        return $item['id'] == $id && $item['slug'] == $slug;
+    });
+
+    return response()->json([
+        'data' => $product,
+        'fullUrl' => url('/')
+    ]);
+});

@@ -68,21 +68,28 @@
                                         <button
                                             class="mx-1 btn btn-tab pb-1 p-0 fs-material-list text-uppercase text-body font-weight-bold tab-selected nav-item"
                                             id="material-2-tab" data-material="2" data-toggle="tab"
-                                            href="#material-list-container-2" role="tab" aria-controls="eyeLiner"
+                                            href="#material-list-container-2" role="tab" aria-controls="blush"
+                                            aria-selected="false">
+                                            Blush
+                                        </button>
+                                        <button
+                                            class="mx-1 btn btn-tab pb-1 p-0 fs-material-list text-uppercase text-body font-weight-bold tab-selected nav-item"
+                                            id="material-3-tab" data-material="3" data-toggle="tab"
+                                            href="#material-list-container-3" role="tab" aria-controls="eyeLiner"
                                             aria-selected="true">
                                             Eye Liner
                                         </button>
                                         <button
                                             class="mx-1 btn btn-tab pb-1 p-0 fs-material-list text-uppercase text-body font-weight-bold tab-selected nav-item"
-                                            id="material-3-tab" data-material="3" data-toggle="tab"
-                                            href="#material-list-container-3" role="tab" aria-controls="eyeShadow"
+                                            id="material-4-tab" data-material="4" data-toggle="tab"
+                                            href="#material-list-container-4" role="tab" aria-controls="eyeShadow"
                                             aria-selected="true">
                                             Eye Shadow
                                         </button>
                                         <button
                                             class="mx-1 btn btn-tab pb-1 p-0 fs-material-list text-uppercase text-body font-weight-bold nav-item"
-                                            id="material-4-tab" data-material="4" data-toggle="tab"
-                                            href="#material-list-container-4" role="tab" aria-controls="foundation"
+                                            id="material-5-tab" data-material="5" data-toggle="tab"
+                                            href="#material-list-container-5" role="tab" aria-controls="foundation"
                                             aria-selected="true">
                                             Foundation
                                         </button>
