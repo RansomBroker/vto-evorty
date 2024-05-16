@@ -60,3 +60,71 @@ Route::controller(LipstickController::class)->name('lipstick.')->group(function(
 Route::get('/vto/face/test', function () {
     return view('products.vto-face');
 });
+
+Route::get('/vto/makeup/test', function() {
+    $data = [
+        // lip
+        [
+            [
+                "id" => 1,
+                'name' => "lipstick one",
+                "icon" => "others/lipstick1.png",
+                "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
+                "link" => 'lipstick'
+            ],
+            [
+                "id" => 2,
+                'name' => "lipstick two",
+                "icon" => "others/lipstick1.png",
+                "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
+                "link" => 'lipstick'
+            ],
+        ],
+        // blush 
+        [
+            [
+                "id" => 1,
+                'name' => "blush one",
+                "icon" => "others/lipstick1.png",
+                "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
+                "link" => "blush"
+            ],
+        ],
+        // Eye Liner
+        [
+            [
+                "id" => 1,
+                'name' => "eye liner one",
+                "icon" => "others/lipstick1.png",
+                "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
+                "link" => "eyeliner"
+            ],
+        ],
+        // Eye Shadow
+        [
+            [
+                "id" => 1,
+                'name' => "eye shadow one",
+                "icon" => "others/lipstick1.png",
+                "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
+                "link" => "eyeshadow"
+            ],
+        ],
+        // Foundation
+        [
+            [
+                "id" => 1,
+                'name' => "foundation one",
+                "icon" => "others/lipstick1.png",
+                "savedColors" => ['#fa0010', '#fa0010', '#00fa32'],
+                "link" => "foundation"
+            ],
+        ],
+    ];
+
+    return view('products.vto-makeup-all', compact('data'));
+})->name('makeup.all');
+
+Route::get('/vto/makeup/{link}/{product}', function() {
+    
+})->name('makeup.vto');

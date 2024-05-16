@@ -201,7 +201,7 @@ canvas {
 }
 
 .card-product {
-    height: 120px;
+    height: 140px;
 }
 
 .card-product-control {
@@ -242,14 +242,32 @@ canvas {
 
 .card-item-product {
     display: inline-block;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     margin-right: 10px;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+}
+
+.card-item-makeup {
+    display: inline-block;
+    width: 89px;
+    height: 92px;
+    margin-right: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.image-product {
+    border: 1px solid #ccc;
+    width: 66px !important;
+    height: 66px I !important;
 }
 
 .card-item-active {
@@ -407,22 +425,6 @@ canvas {
         height: 100vh;
     }
 
-    .card-item-product {
-        display: inline-block;
-        width: 60px;
-        height: 60px;
-        margin-right: 10px;
-        background-color: #f9f9f9;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        cursor: pointer;
-    }
-
-    .card-product {
-        height: 90px;
-    }
-
     .card-item {
         display: inline-block;
         width: 30px !important;
@@ -529,22 +531,6 @@ canvas {
     
     .card-vto-container {
         height: 80vh;
-    }
-
-    .card-item-product {
-        display: inline-block;
-        width: 80px !important;
-        height: 80px !important;
-        margin-right: 10px;
-        background-color: #f9f9f9;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        cursor: pointer;
-    }
-
-    .card-product {
-        height: 120px;
     }
 
     .card-item {
