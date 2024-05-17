@@ -75,6 +75,10 @@ body {
     border-bottom: 3px #ff00ae solid ;
 }
 
+.product-active {
+    border: 2px #ff00ae solid !important;
+}
+
 .btn-tab:focus {
     outline: 0;
     box-shadow: none !important;
@@ -220,6 +224,7 @@ canvas {
 
 .unselected-material-active {
     border: 1px #ff00ae solid !important;
+    border-radius: 50%;
 }
 
 

@@ -1,4 +1,6 @@
 $(window).on("load", function () {
+    let currentCategoryOpen;
+
     navigator.mediaDevices
         .getUserMedia({ video: true })
         .then(function (stream) {
@@ -25,6 +27,18 @@ $(window).on("load", function () {
             console.error("Error accessing webcam:", error);
         });
 
+    // create owl carousel
+    $(".carousel-material-list").owlCarousel({
+        loop: false,
+        nav: false,
+        autoWidth: true,
+    });
+    $(".product-list").owlCarousel({
+        loop: false,
+        nav: false,
+        autoWidth: true,
+    });
+
     $(document).on("click", ".tab-selected", function () {
         let currentMaterial = $(this).data("material");
 
@@ -33,32 +47,81 @@ $(window).on("load", function () {
 
         // tambahkan tab active ke currenttab
         $("#material-" + currentMaterial + "-tab").addClass("tab-active");
+
+        // hide tampilan card material
+        $("#pillsMaterialList").addClass("d-none");
+
+        /// hapus class d-none di pills product
+        $("#pillsProductList").removeClass("d-none");
+
+        $(".material-list-container").removeClass("active show");
+
+        $(".unselected-material-btn").removeClass("unselected-material-active");
     });
 
-    // create owl carousel
-    $(".product-list-0").owlCarousel({
-        loop: false,
-        nav: false,
-        autoWidth: true,
+    // ketika product di click
+    $(document).on("click", ".product-click", function () {
+        let productIndex = $(this).data("product-index");
+        let productCurrent = $(this).data("product-current");
+
+        $("#pillsProductList").addClass("d-none");
+        $("#pillsMaterialList").removeClass("d-none");
+
+        $(".product-" + productIndex).removeClass("product-active");
+        $(".product-" + productIndex + "-" + productCurrent).addClass(
+            "product-active"
+        );
+
+        $(
+            ".material-list-container-" + productIndex + "-" + productCurrent
+        ).addClass("show active");
     });
-    $(".product-list-1").owlCarousel({
-        loop: false,
-        nav: false,
-        autoWidth: true,
+
+    // ketika klik btn-back
+    $(document).on("click", ".btn-back", function () {
+        // hide tampilan card material
+        $("#pillsMaterialList").addClass("d-none");
+
+        /// hapus class d-none di pills product
+        $("#pillsProductList").removeClass("d-none");
+
+        $(".material-list-container").removeClass("active show");
+
+        $(".unselected-material-btn").removeClass("unselected-material-active");
     });
-    $(".product-list-2").owlCarousel({
-        loop: false,
-        nav: false,
-        autoWidth: true,
+
+    // ketika warna dipilih
+    $(document).on("click", ".card-item", function () {
+        let materialIndex = $(this).data("material-index");
+        let materialCurrent = $(this).data("material-current");
+        let materialProduct = $(this).data("material-product");
+        let color = $(this).data("color");
+
+        // hapus class card item active di seluruh product
+        $(".card-item-" + materialIndex).removeClass("card-item-active");
+
+        // tambahkan active card item
+        $(
+            ".card-item-" +
+                materialIndex +
+                "-" +
+                materialProduct +
+                "-" +
+                materialCurrent
+        ).addClass("card-item-active");
     });
-    $(".product-list-3").owlCarousel({
-        loop: false,
-        nav: false,
-        autoWidth: true,
-    });
-    $(".product-list-4").owlCarousel({
-        loop: false,
-        nav: false,
-        autoWidth: true,
+
+    // ketika unselected
+    $(document).on("click", ".unselected-material-btn", function () {
+        let materialIndex = $(this).data("material-index");
+        let materialProduct = $(this).data("material-product");
+
+        $(".unselected-material-btn").removeClass("unselected-material-active");
+
+        $(
+            ".unselected-material-" + materialIndex + "-" + materialProduct
+        ).addClass("unselected-material-active");
+
+        $(".product-" + materialIndex).removeClass("product-active");
     });
 });

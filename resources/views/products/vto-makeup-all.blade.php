@@ -49,7 +49,7 @@
                             <div class="card border-0 rounded-0">
                                 <div class="card-body p-0 card-product">
                                     <!-- nav -->
-                                    <nav class="px-2 pt-1 nav nav-pills mb-2 carousel-material-list border-bottom"
+                                    <nav class="px-2 pt-1 nav nav-pills mb-2 carousel-material-list owl-carousel owl-theme border-bottom"
                                         id="materialTab" role="tablist">
                                         <button
                                             class="mx-1 btn btn-tab pb-1 p-0 fs-material-list text-uppercase text-body font-weight-bold nav-item tab-selected tab-active"
@@ -98,18 +98,24 @@
                                         <div class="tab-pane fade show active" role="tabpanel"
                                             id="material-list-container-0">
                                             <div
-                                                class="d-flex justify-content-start owl-carousel owl-theme product-list-0">
+                                                class="d-flex justify-content-start owl-carousel owl-theme product-list">
+                                                @php($i = 0)
                                                 @foreach ($data as $products)
                                                 @foreach ($products as $product)
                                                 <div class="d-flex justify-content-center card-item-makeup flex-wrap">
-                                                    <a href="{{ route('makeup.vto', [$product['link'], $product['slug'], $product['id']])}}"
-                                                        class="stretched-link"></a>
+                                                    <a href="#material-list-container-{{$product['slug']}}"
+                                                        class="product-click stretched-link nav-item" data-toggle="tab"
+                                                        role="tab"
+                                                        aria-controls="material-list-container-{{$product['slug']}}"
+                                                        aria-selected="false" data-product-index="{{$i}}"
+                                                        data-product-current="{{$product['id']}}"></a>
                                                     <img src="{{ asset('assets/' . $product["icon"]) }}" alt=""
-                                                        class="image-product pb-1">
+                                                        class="image-product pb-1 product-{{$i}} product-{{$i}}-{{$product['id']}}">
                                                     <p class="text-center">
                                                         {{substr($product['name'], 0, 12) . "...";}}</p>
                                                 </div>
                                                 @endforeach
+                                                @php($i++)
                                                 @endforeach
                                             </div>
                                         </div>
@@ -117,19 +123,71 @@
                                         @foreach($data as $products)
                                         <div class="tab-pane fade" role="tabpanel" id="material-list-container-{{$i}}">
                                             <div
-                                                class="d-flex justify-content-start owl-carousel owl-theme product-list-{{$i}}">
+                                                class="d-flex justify-content-start owl-carousel owl-theme product-list">
                                                 @foreach($products as $product)
                                                 <div class="d-flex justify-content-center card-item-makeup flex-wrap ">
-                                                    <a href="{{ route('makeup.vto', [$product['link'], $product['slug'], $product['id']])}}"
-                                                        class="stretched-link"></a>
+                                                    <a href="#material-list-container-{{$product['slug']}}"
+                                                        class="product-click stretched-link nav-item" data-toggle="tab"
+                                                        role="tab"
+                                                        aria-controls="material-list-container-{{$product['slug']}}"
+                                                        aria-selected="false" data-product-index="{{$i-1}}"
+                                                        data-product-current="{{$product['id']}}"></a>
                                                     <img src="{{ asset('assets/' . $product["icon"]) }}" alt=""
-                                                        class="image-product pb-1">
+                                                        class="image-product pb-1 product-{{$i-1}} product-{{$i-1}}-{{$product['id']}}">
                                                     <p class="text-center">
                                                         {{substr($product['name'], 0, 12) . "...";}}</p>
                                                 </div>
                                                 @endforeach
                                             </div>
                                         </div>
+                                        @php($i++)
+                                        @endforeach
+                                    </div>
+                                    <!-- product item -->
+                                    <div class="tab-content px-2 mb-1" id="pillsMaterialList">
+                                        @php($i = 0)
+                                        @foreach($data as $products)
+                                        @foreach($products as $product)
+                                        <div class="material-list-container material-list-container-{{$i}}-{{$product['id']}} tab-pane fade"
+                                            id="material-list-container-{{$product['slug']}}" role="tabpanel">
+                                            <div class="d-flex justify-content-start">
+                                                <div
+                                                    class="unselected-container d-flex align-items-center justify-content-center">
+                                                    <img src="{{ asset('assets/others/unselected.png')}}"
+                                                        class="unselected-img unselected-material-btn unselected-material-{{$i}}-{{$product['id']}} btn-rounded"
+                                                        data-material-index="{{$i}}"
+                                                        data-material-product="{{$product['id']}}">
+                                                </div>
+                                                <div class="material-list">
+                                                    @foreach($product['savedColors'] as $key => $color)
+                                                    <div class="card-item card-item-{{$i}} card-item-{{$i}}-{{$product['id']}}-{{$key}}"
+                                                        data-material-index="{{$i}}"
+                                                        data-material-product="{{$product['id']}}"
+                                                        data-material-current="{{$key}}" data-color="{{ $color}}"
+                                                        style="background-color: {{$color}}">
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-start px-2">
+                                                <!-- back -->
+                                                <btn class="btn btn-back">
+                                                    <i class='bx bxs-chevron-left'></i>
+                                                </btn>
+                                                <div class="product-container d-flex justify-content-start">
+                                                    <!-- image -->
+                                                    <img class="ml-2 img-thumbnail-product"
+                                                        src="{{ asset('assets/'.$product['icon']) }}" alt="">
+                                                    <!-- Text -->
+                                                    <p class="ml-1 pt-1 text-product">{{ $product['name'] }}</p>
+                                                </div>
+                                                <!-- shop now button -->
+                                                <div class="d-flex align-items-center">
+                                                    <button class="btn-shop btn-sm btn btn-dark"> Shop Now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
                                         @php($i++)
                                         @endforeach
                                     </div>

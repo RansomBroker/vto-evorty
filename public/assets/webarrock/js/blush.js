@@ -120,8 +120,6 @@ $(window).on("load", function () {
                             "uBlushColor"
                         );
 
-                        $("#loading").addClass("d-none");
-
                         // buat perulangan untuk buat nav
                         let _material_tab = `
                             <button class="btn btn-tab pb-1 p-0 fs-material-list text-uppercase text-body font-weight-bold nav-item tab-selected tab-active" data-toggle="tab"  role="tab" href="#material-list-container">
@@ -140,6 +138,8 @@ $(window).on("load", function () {
                         });
 
                         createCard();
+
+                        $("#loading").addClass("d-none");
                     })
                     .catch(function (err) {
                         throw new Error(err);
